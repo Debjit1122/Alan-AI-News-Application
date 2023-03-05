@@ -1,0 +1,62 @@
+import React from 'react'
+import { Card, CardActions, CardActionArea, CardContent, CardMedia, Button, Typography } from '@mui/material';
+function NewsCard({ article: { description, publishedAt, source, title, url, urlToImage }, i }) {
+    return (
+      <Card
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          borderBottom: "10px solid white",
+        }}
+      >
+        <CardActionArea href={url} target="_blank">
+          <CardMedia
+            sx={{ height: 250 }}
+            image={
+              urlToImage ||
+              "https://cdn.pixabay.com/photo/2015/02/15/09/33/news-636978_960_720.jpg"
+            }
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              margin: "20px",
+            }}
+          >
+            <Typography variant="body2" color="textSecondary" component="h2">
+              {new Date(publishedAt).toDateString()}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="h2">
+              {source.name}
+            </Typography>
+          </div>
+          <Typography sx={{ padding: "0 16px" }} gutterBottom variant="h5">
+            {title}
+          </Typography>
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions
+          sx={{
+            padding: "0 16px 8px 16px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+          <Typography variant="h5" color="textSecondary">
+            {i + 1}
+          </Typography>
+        </CardActions>
+      </Card>
+    );
+}
+
+export default NewsCard
